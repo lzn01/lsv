@@ -17,7 +17,8 @@ code {
 *::after {box-sizing: border-box;}
 body {
   font-family: $font-hei;
-  //font-size: 16px;
+  font-size: 16px;
+  background: #00020b;
 }
 #root{
   margin: 0 auto;
