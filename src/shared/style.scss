@@ -22,4 +22,11 @@ body {
 #root{
   margin: 0 auto;
   background: antiquewhite;
+  display: flex;
+  flex-direction: column;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
