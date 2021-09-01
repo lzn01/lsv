@@ -1,6 +1,8 @@
 import React, {useEffect, useRef} from "react";
 import * as echarts from "echarts";
 import {px} from "../shared/px";
+import {baseEchartOptions} from "../shared/base-echart-options";
+import {createEchartOptions} from "../shared/create-echart-options";
 
 export const Chart2 = () => {
     // 拿到div
@@ -12,49 +14,38 @@ export const Chart2 = () => {
         var myChart = echarts.init(divRef.current);
         // 指定图表的配置项和数据
         var option = {
-            textStyle: {
-                fontSize: px(12),
-                color: '#79839e'
-            },
-            xAxis: {
-                data: ["兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区"],
-                axisTick: {show: false},
-                axisLabel: {
-                    fontSize: px(12),
-                    // 实现x轴换行
-                    formatter(val) {
-                        const array = val.split('');
-                        if (val.length <= 2) {
-                            return val
-                        }
-                        array.splice(2, 0, '\n');
-                        return array.join('')
-                    }
-                },
-            },
-            yAxis: {
-                splitLine: {show: false},
-                axisLabel: {
-                    fontSize: px(12),
-                },
-                axisLine: {
-                    show: true,
-                    lineStyle: {color: '#083B70'}
-                }
-            },
+            ...baseEchartOptions,
             grid: {
-                x: px(40),
+                x: px(80),
                 y: px(40),
                 x2: px(40),
                 y2: px(40),
             },
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [10, 20, 36, 41, 15, 20, 37, 18, 29]
-            }]
+            xAxis: {
+                type: 'value',
+                boundaryGap: [0, 0.01]
+            },
+            yAxis: {
+                type: 'category',
+                data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)'],
+                axisLabel: {
+                    fontSize: px(12),
+                },
+            },
+            series: [
+                {
+                    name: '2011年',
+                    type: 'bar',
+                    data: [18203, 23489, 29034, 104970, 131744, 630230]
+                },
+                {
+                    name: '2012年',
+                    type: 'bar',
+                    data: [19325, 23438, 31000, 121594, 134141, 681807]
+                }
+            ]
         };
-        myChart.setOption(option);
+        myChart.setOption(createEchartOptions(option));
     }, [])
 
     return (

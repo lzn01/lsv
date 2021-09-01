@@ -1,6 +1,8 @@
 import React, {useEffect, useRef} from "react";
 import * as echarts from "echarts";
 import {px} from "../shared/px";
+import {baseEchartOptions} from "../shared/base-echart-options";
+import {createEchartOptions} from "../shared/create-echart-options";
 
 export const Chart1 = () => {
     // 拿到div
@@ -12,10 +14,7 @@ export const Chart1 = () => {
         var myChart = echarts.init(divRef.current);
         // 指定图表的配置项和数据
         var option = {
-            textStyle: {
-                fontSize: px(12),
-                color: '#79839e'
-            },
+            ...baseEchartOptions, // 2. 引入公共部分
             xAxis: {
                 data: ["兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区"],
                 axisTick: {show: false},
@@ -42,19 +41,13 @@ export const Chart1 = () => {
                     lineStyle: {color: '#083B70'}
                 }
             },
-            grid: {
-                x: px(40),
-                y: px(40),
-                x2: px(40),
-                y2: px(40),
-            },
             series: [{
                 name: '销量',
                 type: 'bar',
                 data: [10, 20, 36, 41, 15, 20, 37, 18, 29]
             }]
         };
-        myChart.setOption(option);
+        myChart.setOption(createEchartOptions(option));
     }, [])
 
     return (
