@@ -76,7 +76,7 @@ export const Chart2 = () => {
             <div ref={divRef} className="chart"/>
             <div className="legend">
                 <span className="first"/> 破案排名1
-                <span className="second"/> 破案排名1
+                <span className="second"/> 破案排名2
             </div>
         </div>
     )
