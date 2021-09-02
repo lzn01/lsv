@@ -58,6 +58,7 @@
         bottom: 0;
         left: 0;
         border-radius: 4px;
+        pointer-events: none;
         box-shadow: 17px 0 0 -16px #0e325f,
         -17px 0 0 -16px #0e325f,
         0 17px 0 -16px #0e325f,
@@ -96,9 +97,24 @@
 
     > .section5 {
       grid-area: box5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      > .row1 {
+        height: px(317);
+      }
+
+      > .row2 {
+        height: px(317);
+      }
+
+      > .row3 {
+        height: px(455);
+      }
     }
 
-    .管辖统计, .破获排名, .案发趋势, .案发时段, .战果, .籍贯, .年龄段 {
+    .管辖统计, .破获排名, .案发趋势, .案发时段, .战果, .籍贯, .年龄段, .案发类型, .案发街道, .作案手段 {
       height: px(315);
       display: flex;
       flex-direction: column;
@@ -119,6 +135,12 @@
         flex: 1;
         width: 100%;
       }
+    }
+
+    .charts {
+      width: 100%;
+      flex: 1;
+      display: flex;
     }
 
     .破获排名 {
@@ -153,9 +175,13 @@
       height: px(363);
     }
 
-    .战果 {
+    .战果, .作案手段 {
+      padding: 0 px(24);
+
       > table {
-        margin-top: px(38);
+        width: 100%;
+        table-layout: fixed;
+        margin-top: px(25);
         border-collapse: collapse;
 
         th, td {
@@ -229,9 +255,6 @@
       height: px(363);
 
       > .charts {
-        width: 100%;
-        flex: 1;
-        display: flex;
         padding: px(30);
       }
 
@@ -248,6 +271,7 @@
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
+          padding-right: px(10);
 
           > span {
             display: inline-block;
@@ -303,6 +327,22 @@
           font-size: px(20);
           color: #7ab6db;
           margin-top: px(6);
+        }
+      }
+    }
+
+    .chart12 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .作案手段 {
+      > table {
+        tbody {
+          td {
+            height: px(26);
+          }
         }
       }
     }
