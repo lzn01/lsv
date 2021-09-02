@@ -1,22 +1,47 @@
 import React, {useEffect, useRef} from "react";
 import * as echarts from "echarts";
 import {px} from "../shared/px";
-import {baseEchartOptions} from "../shared/base-echart-options";
 import {createEchartOptions} from "../shared/create-echart-options";
 
 export const Chart1 = () => {
     // 拿到div
     const divRef = useRef(null)
+    const myChart = useRef(null);
+    // const name = ["城关区", "七里河区", "西固区", "安宁区", "红古区", "永登县", "皋兰县", "榆中县", "兰州新区"];
+    const data = [
+        {name: '城关区', num: 10},
+        {name: '七里河区', num: 20},
+        {name: '西固区', num: 18},
+        {name: '安宁区', num: 36},
+        {name: '红古区', num: 41},
+        {name: '永登县', num: 15},
+        {name: '皋兰县', num: 26},
+        {name: '榆中县', num: 37},
+        {name: '兰州新区', num: 29}
+    ]
+
     // 挂载之后拿到div
     useEffect(() => {
-        // 打印div信息
-        console.log(divRef.current)
-        var myChart = echarts.init(divRef.current);
-        // 指定图表的配置项和数据
-        var option = {
-            ...baseEchartOptions, // 2. 引入公共部分
+        setInterval(() => {
+            const newData = [
+                {name: '城关区', num: Math.random() * 100},
+                {name: '七里河区', num: Math.random() * 100},
+                {name: '西固区', num: Math.random() * 100},
+                {name: '安宁区', num: Math.random() * 100},
+                {name: '红古区', num: Math.random() * 100},
+                {name: '永登县', num: Math.random() * 100},
+                {name: '皋兰县', num: Math.random() * 100},
+                {name: '榆中县', num: Math.random() * 100},
+                {name: '兰州新区', num: Math.random() * 100}
+            ];
+            setData(newData);
+        }, 3000);
+    }, []);
+
+    const setData = (data) => {
+        myChart.current.setOption(createEchartOptions({
             xAxis: {
-                data: ["兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区", "兰州新区"],
+                data: data.map(i => i.name),
                 axisTick: {show: false},
                 axisLabel: {
                     fontSize: px(12),
@@ -42,12 +67,14 @@ export const Chart1 = () => {
                 }
             },
             series: [{
-                name: '销量',
                 type: 'bar',
-                data: [10, 20, 36, 41, 15, 20, 37, 18, 29]
+                data: data.map(i => i.num)
             }]
-        };
-        myChart.setOption(createEchartOptions(option));
+        }))
+    }
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current)
+        setData(data)
     }, [])
 
     return (
