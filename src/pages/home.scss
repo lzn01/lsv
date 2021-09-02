@@ -37,7 +37,7 @@
     grid-row-gap: px(28);
     padding-top: px(30);
     width: px(2420);
-    margin-top: px(30);
+    margin: 0 auto;
 
     > section {
       text-align: center
@@ -78,6 +78,9 @@
 
     > .section2 {
       grid-area: box2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     > .section3 {
@@ -92,7 +95,7 @@
       grid-area: box5;
     }
 
-    .管辖统计, .破获排名 {
+    .管辖统计, .破获排名, .案发趋势, .案发时段 {
       height: px(315);
       display: flex;
       flex-direction: column;
@@ -141,6 +144,9 @@
           background: linear-gradient(90deg, #b92ae8 0%, #6773e7 100%);
         }
       }
+    }
+    .案发趋势, .案发时段{
+      height: px(363);
     }
   }
 }
